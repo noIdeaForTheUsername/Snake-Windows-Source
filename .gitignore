@@ -1,0 +1,10 @@
+.vs/
+*.suo
+*.user
+*.ipch
+*.pdb
+*.obj
+*.log
+CMakeLists.txt
+Debug/
+Release/

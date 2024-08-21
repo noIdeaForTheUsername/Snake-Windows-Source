@@ -1,0 +1,193 @@
+# !! Place this file into the root directory of the project and rename into 'CMakeLists.txt' !!
+
+cmake_minimum_required(VERSION 3.28)
+project(Snake)
+
+set(CMAKE_CXX_STANDARD 17)
+
+set(SFML_DIR "${CMAKE_SOURCE_DIR}/External/SFMLMinGW")
+set(CMAKE_PREFIX_PATH "${SFML_DIR}/lib/cmake/SFML")
+
+include_directories(../..)
+include_directories(Audio)
+include_directories(..)
+include_directories(.)
+include_directories(include)
+include_directories(include/SFML)
+include_directories(include/SFML/Audio)
+include_directories(include/SFML/Graphics)
+include_directories(include/SFML/Network)
+include_directories(include/SFML/System)
+include_directories(include/SFML/Window)
+include_directories(Fonts)
+include_directories(Textures)
+
+add_executable(Snake
+        Audio/Pixel_Serpent_Groove.mp3
+        Audio/Pixel_Serpent_Groove.ogg
+        External/SFMLMinGW/include/SFML/Audio/AlResource.hpp
+        External/SFMLMinGW/include/SFML/Audio/Export.hpp
+        External/SFMLMinGW/include/SFML/Audio/InputSoundFile.hpp
+        External/SFMLMinGW/include/SFML/Audio/Listener.hpp
+        External/SFMLMinGW/include/SFML/Audio/Music.hpp
+        External/SFMLMinGW/include/SFML/Audio/OutputSoundFile.hpp
+        External/SFMLMinGW/include/SFML/Audio/Sound.hpp
+        External/SFMLMinGW/include/SFML/Audio/SoundBuffer.hpp
+        External/SFMLMinGW/include/SFML/Audio/SoundBufferRecorder.hpp
+        External/SFMLMinGW/include/SFML/Audio/SoundFileFactory.hpp
+        External/SFMLMinGW/include/SFML/Audio/SoundFileFactory.inl
+        External/SFMLMinGW/include/SFML/Audio/SoundFileReader.hpp
+        External/SFMLMinGW/include/SFML/Audio/SoundFileWriter.hpp
+        External/SFMLMinGW/include/SFML/Audio/SoundRecorder.hpp
+        External/SFMLMinGW/include/SFML/Audio/SoundSource.hpp
+        External/SFMLMinGW/include/SFML/Audio/SoundStream.hpp
+        External/SFMLMinGW/include/SFML/Graphics/BlendMode.hpp
+        External/SFMLMinGW/include/SFML/Graphics/CircleShape.hpp
+        External/SFMLMinGW/include/SFML/Graphics/Color.hpp
+        External/SFMLMinGW/include/SFML/Graphics/ConvexShape.hpp
+        External/SFMLMinGW/include/SFML/Graphics/Drawable.hpp
+        External/SFMLMinGW/include/SFML/Graphics/Export.hpp
+        External/SFMLMinGW/include/SFML/Graphics/Font.hpp
+        External/SFMLMinGW/include/SFML/Graphics/Glsl.hpp
+        External/SFMLMinGW/include/SFML/Graphics/Glsl.inl
+        External/SFMLMinGW/include/SFML/Graphics/Glyph.hpp
+        External/SFMLMinGW/include/SFML/Graphics/Image.hpp
+        External/SFMLMinGW/include/SFML/Graphics/PrimitiveType.hpp
+        External/SFMLMinGW/include/SFML/Graphics/Rect.hpp
+        External/SFMLMinGW/include/SFML/Graphics/Rect.inl
+        External/SFMLMinGW/include/SFML/Graphics/RectangleShape.hpp
+        External/SFMLMinGW/include/SFML/Graphics/RenderStates.hpp
+        External/SFMLMinGW/include/SFML/Graphics/RenderTarget.hpp
+        External/SFMLMinGW/include/SFML/Graphics/RenderTexture.hpp
+        External/SFMLMinGW/include/SFML/Graphics/RenderWindow.hpp
+        External/SFMLMinGW/include/SFML/Graphics/Shader.hpp
+        External/SFMLMinGW/include/SFML/Graphics/Shape.hpp
+        External/SFMLMinGW/include/SFML/Graphics/Sprite.hpp
+        External/SFMLMinGW/include/SFML/Graphics/Text.hpp
+        External/SFMLMinGW/include/SFML/Graphics/Texture.hpp
+        External/SFMLMinGW/include/SFML/Graphics/Transform.hpp
+        External/SFMLMinGW/include/SFML/Graphics/Transformable.hpp
+        External/SFMLMinGW/include/SFML/Graphics/Vertex.hpp
+        External/SFMLMinGW/include/SFML/Graphics/VertexArray.hpp
+        External/SFMLMinGW/include/SFML/Graphics/VertexBuffer.hpp
+        External/SFMLMinGW/include/SFML/Graphics/View.hpp
+        External/SFMLMinGW/include/SFML/Network/Export.hpp
+        External/SFMLMinGW/include/SFML/Network/Ftp.hpp
+        External/SFMLMinGW/include/SFML/Network/Http.hpp
+        External/SFMLMinGW/include/SFML/Network/IpAddress.hpp
+        External/SFMLMinGW/include/SFML/Network/Packet.hpp
+        External/SFMLMinGW/include/SFML/Network/Socket.hpp
+        External/SFMLMinGW/include/SFML/Network/SocketHandle.hpp
+        External/SFMLMinGW/include/SFML/Network/SocketSelector.hpp
+        External/SFMLMinGW/include/SFML/Network/TcpListener.hpp
+        External/SFMLMinGW/include/SFML/Network/TcpSocket.hpp
+        External/SFMLMinGW/include/SFML/Network/UdpSocket.hpp
+        External/SFMLMinGW/include/SFML/System/Clock.hpp
+        External/SFMLMinGW/include/SFML/System/Err.hpp
+        External/SFMLMinGW/include/SFML/System/Export.hpp
+        External/SFMLMinGW/include/SFML/System/FileInputStream.hpp
+        External/SFMLMinGW/include/SFML/System/InputStream.hpp
+        External/SFMLMinGW/include/SFML/System/Lock.hpp
+        External/SFMLMinGW/include/SFML/System/MemoryInputStream.hpp
+        External/SFMLMinGW/include/SFML/System/Mutex.hpp
+        External/SFMLMinGW/include/SFML/System/NativeActivity.hpp
+        External/SFMLMinGW/include/SFML/System/NonCopyable.hpp
+        External/SFMLMinGW/include/SFML/System/Sleep.hpp
+        External/SFMLMinGW/include/SFML/System/String.hpp
+        External/SFMLMinGW/include/SFML/System/String.inl
+        External/SFMLMinGW/include/SFML/System/Thread.hpp
+        External/SFMLMinGW/include/SFML/System/Thread.inl
+        External/SFMLMinGW/include/SFML/System/ThreadLocal.hpp
+        External/SFMLMinGW/include/SFML/System/ThreadLocalPtr.hpp
+        External/SFMLMinGW/include/SFML/System/ThreadLocalPtr.inl
+        External/SFMLMinGW/include/SFML/System/Time.hpp
+        External/SFMLMinGW/include/SFML/System/Utf.hpp
+        External/SFMLMinGW/include/SFML/System/Utf.inl
+        External/SFMLMinGW/include/SFML/System/Vector2.hpp
+        External/SFMLMinGW/include/SFML/System/Vector2.inl
+        External/SFMLMinGW/include/SFML/System/Vector3.hpp
+        External/SFMLMinGW/include/SFML/System/Vector3.inl
+        External/SFMLMinGW/include/SFML/Window/Clipboard.hpp
+        External/SFMLMinGW/include/SFML/Window/Context.hpp
+        External/SFMLMinGW/include/SFML/Window/ContextSettings.hpp
+        External/SFMLMinGW/include/SFML/Window/Cursor.hpp
+        External/SFMLMinGW/include/SFML/Window/Event.hpp
+        External/SFMLMinGW/include/SFML/Window/Export.hpp
+        External/SFMLMinGW/include/SFML/Window/GlResource.hpp
+        External/SFMLMinGW/include/SFML/Window/Joystick.hpp
+        External/SFMLMinGW/include/SFML/Window/Keyboard.hpp
+        External/SFMLMinGW/include/SFML/Window/Mouse.hpp
+        External/SFMLMinGW/include/SFML/Window/Sensor.hpp
+        External/SFMLMinGW/include/SFML/Window/Touch.hpp
+        External/SFMLMinGW/include/SFML/Window/VideoMode.hpp
+        External/SFMLMinGW/include/SFML/Window/Vulkan.hpp
+        External/SFMLMinGW/include/SFML/Window/Window.hpp
+        External/SFMLMinGW/include/SFML/Window/WindowBase.hpp
+        External/SFMLMinGW/include/SFML/Window/WindowHandle.hpp
+        External/SFMLMinGW/include/SFML/Window/WindowStyle.hpp
+        External/SFMLMinGW/include/SFML/Audio.hpp
+        External/SFMLMinGW/include/SFML/Config.hpp
+        External/SFMLMinGW/include/SFML/GpuPreference.hpp
+        External/SFMLMinGW/include/SFML/Graphics.hpp
+        External/SFMLMinGW/include/SFML/Main.hpp
+        External/SFMLMinGW/include/SFML/Network.hpp
+        External/SFMLMinGW/include/SFML/OpenGL.hpp
+        External/SFMLMinGW/include/SFML/System.hpp
+        External/SFMLMinGW/include/SFML/Window.hpp
+        Fonts/04B_30__.TTF
+        Fonts/ARLRDBD.TTF
+        Textures/amogus.png
+        Textures/bottomBar.png
+        Textures/fruit.png
+        Textures/fruit4k.png
+        Textures/icon.png
+        Textures/snakeHead.png
+        Textures/tile.png
+        Board.cpp
+        Board.h
+        BottomBar.cpp
+        BottomBar.h
+        Fruit.cpp
+        Fruit.h
+        Game.cpp
+        Game.h
+        main.cpp
+        openal32.dll
+        SETTINGS.h
+        settingsInit.cpp
+        External/SFMLMinGW/bin/sfml-audio-2.dll
+        External/SFMLMinGW/bin/sfml-audio-d-2.dll
+        External/SFMLMinGW/bin/sfml-graphics-2.dll
+        External/SFMLMinGW/bin/sfml-graphics-d-2.dll
+        External/SFMLMinGW/bin/sfml-network-2.dll
+        External/SFMLMinGW/bin/sfml-network-d-2.dll
+        External/SFMLMinGW/bin/sfml-system-2.dll
+        External/SFMLMinGW/bin/sfml-system-d-2.dll
+        External/SFMLMinGW/bin/sfml-window-2.dll
+        External/SFMLMinGW/bin/sfml-window-d-2.dll
+        Snake.cpp
+        Snake.h
+        Snake.sln
+        Snake.vcxproj
+        Snake.vcxproj.filters
+        Tile.cpp
+        Tile.h
+)
+
+# Find SFML package
+find_package(SFML 2.6.1 COMPONENTS system window graphics network REQUIRED)
+
+# Link SFML libraries
+target_link_libraries(Snake sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
+
+# Copy texture files to the build directory
+file(COPY ${CMAKE_SOURCE_DIR}/Textures DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY ${CMAKE_SOURCE_DIR}/Fonts DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY ${CMAKE_SOURCE_DIR}/Audio DESTINATION ${CMAKE_BINARY_DIR})
+
+# Copy DLLs to the build directory
+add_custom_command(TARGET Snake POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/External/SFMLMinGW/bin
+        $<TARGET_FILE_DIR:Snake>
+)
