@@ -21,7 +21,7 @@ private:
 	static sf::Texture texture;
 	static sf::Texture wallTexture;
 
-	void updateSpriteTexture(sf::Texture* newTexture, float width = -1.f, float height = -1.f);
+	void updateSpriteTexture(sf::Texture* newTexture, sf::Vector2f newSize = sf::Vector2f(-1, -1));
 	void placeWall();
 public:
 	Tile(float posX, float posY, float width, float height, sf::Color tileColor);

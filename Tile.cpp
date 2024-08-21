@@ -21,7 +21,7 @@ Tile::Tile(float posX, float posY, float width, float height, sf::Color tileColo
 	if (!Tile::assetsLoaded) Tile::loadAssets();
 
 	this->sprite.setPosition(posX, posY);
-	this->updateSpriteTexture(&Tile::texture, width, height);
+	this->updateSpriteTexture(&Tile::texture, sf::Vector2f(width, height));
 	this->sprite.setColor(this->emptyColor);
 }
 
@@ -35,13 +35,15 @@ void Tile::loadAssets()
 	Tile::wallSound.setVolume(DEFAULT_VOLUME);
 }
 
-void Tile::updateSpriteTexture(sf::Texture* newTexture, float width, float height)
+void Tile::updateSpriteTexture(sf::Texture* newTexture, sf::Vector2f newSize)
 {
-	sf::FloatRect oldSize = this->sprite.getGlobalBounds();
+	if (newSize == sf::Vector2f(-1, -1)) {
+		// The default function parameter is sf::Vector2f(-1, -1). If no other size is given, use the old sprite size.
+		newSize = sf::Vector2f(this->sprite.getGlobalBounds().width, this->sprite.getGlobalBounds().height);
+	}
 	this->sprite.setTexture(*newTexture);
-	sf::Vector2u textureSize = this->sprite.getTexture()->getSize();
-	sf::FloatRect newSize = this->sprite.getGlobalBounds();
-	this->sprite.setScale((width == -1.f ? oldSize.width : width) / textureSize.x, (height == -1.f ? oldSize.height : height) / textureSize.y);
+	sf::FloatRect textureSize = this->sprite.getLocalBounds();
+	this->sprite.setScale(newSize.x / textureSize.width, newSize.y / textureSize.height);
 }
 
 TileStatus Tile::placeSnakeTile(int snakeLength, int totalSnakeLength = 2, sf::Color beginColor, sf::Color endColor) {
